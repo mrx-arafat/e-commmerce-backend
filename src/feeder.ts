@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 import { ProductModel } from './app/modules/product/product.model';
-import { OrderModel } from './app/modules/product/order.model'; // Import OrderModel if you have orders data to seed
+import { OrderModel } from './app/modules/product/order.model';
 import config from './app/config';
 
-// Sample data
-const sampleData = [
+const sampleProducts = [
   {
     name: 'Wireless Mouse',
     description: 'Ergonomic wireless mouse with adjustable DPI settings.',
@@ -160,13 +159,48 @@ const sampleData = [
   },
 ];
 
-// Feeder function to insert sample data into MongoDB
+const customerEmails = [
+  'customer1@example.com',
+  'customer2@example.com',
+  'customer3@example.com',
+  'customer4@example.com',
+  'customer5@example.com',
+];
+
+// Generate random orders
+const generateRandomOrders = (productIds: mongoose.Types.ObjectId[]) => {
+  const orders = [];
+  productIds.forEach((productId) => {
+    const numberOfOrders = Math.floor(Math.random() * 5) + 1; // 1 to 5 orders per product
+    for (let i = 0; i < numberOfOrders; i++) {
+      const order = {
+        email:
+          customerEmails[Math.floor(Math.random() * customerEmails.length)],
+        productId,
+        price:
+          sampleProducts.find((product) => product._id === productId.toString())
+            ?.price || 0,
+        quantity: Math.floor(Math.random() * 5) + 1, // Quantity between 1 and 5
+      };
+      orders.push(order);
+    }
+  });
+  return orders;
+};
+
 const feedDatabase = async () => {
   try {
     await mongoose.connect(config.database_url as string);
 
-    await ProductModel.deleteMany({}); // Clear existing data
-    await ProductModel.insertMany(sampleData); // Insert sample data
+    await ProductModel.deleteMany({});
+    await OrderModel.deleteMany({});
+
+    const insertedProducts = await ProductModel.insertMany(sampleProducts);
+
+    const productIds = insertedProducts.map((product) => product._id);
+
+    const sampleOrders = generateRandomOrders(productIds);
+    await OrderModel.insertMany(sampleOrders);
 
     console.log('Sample data inserted successfully!');
     mongoose.disconnect();

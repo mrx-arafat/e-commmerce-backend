@@ -12,7 +12,7 @@ const orderSchema = Joi.object({
   quantity: Joi.number().required(),
 });
 
-// Create a new order
+// Create new order
 router.post('/', async (req: Request, res: Response) => {
   try {
     const { error } = orderSchema.validate(req.body);
@@ -28,12 +28,10 @@ router.post('/', async (req: Request, res: Response) => {
         .json({ success: false, message: 'Product not found' });
 
     if (product.inventory.quantity < req.body.quantity) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: 'Insufficient quantity available in inventory',
-        });
+      return res.status(400).json({
+        success: false,
+        message: 'Insufficient quantity available in inventory',
+      });
     }
 
     product.inventory.quantity -= req.body.quantity;
@@ -56,25 +54,11 @@ router.post('/', async (req: Request, res: Response) => {
 // Retrieve all orders
 router.get('/', async (req: Request, res: Response) => {
   try {
-    const orders = await OrderModel.find();
-    res.status(200).json({
-      success: true,
-      message: 'Orders fetched successfully!',
-      data: orders,
-    });
-  } catch (err) {
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
-  }
-});
-
-// Retrieve orders by user email
-router.get('/user', async (req: Request, res: Response) => {
-  try {
     const email = req.query.email as string;
     const orders = await OrderModel.find({ email });
     res.status(200).json({
       success: true,
-      message: 'Orders fetched successfully for user email!',
+      message: 'Orders fetched successfully!',
       data: orders,
     });
   } catch (err) {

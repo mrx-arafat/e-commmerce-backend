@@ -4,7 +4,7 @@ import { productSchema } from './productValidator';
 
 const router = Router();
 
-// Create a new product
+// Create new product
 router.post('/', async (req: Request, res: Response) => {
   try {
     const { error } = productSchema.validate(req.body);
@@ -25,7 +25,7 @@ router.post('/', async (req: Request, res: Response) => {
   }
 });
 
-// Retrieve a list of all products
+// Retrieve all products
 router.get('/', async (req: Request, res: Response) => {
   try {
     const products = await ProductModel.find();
@@ -39,7 +39,7 @@ router.get('/', async (req: Request, res: Response) => {
   }
 });
 
-// Retrieve a specific product by ID
+// Retrieve product by ID
 router.get('/:productId', async (req: Request, res: Response) => {
   try {
     const product = await ProductModel.findById(req.params.productId);
