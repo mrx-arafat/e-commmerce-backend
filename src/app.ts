@@ -14,7 +14,7 @@ app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('hello BSDK');
+  res.send('Welcome to my E-commerce API');
 });
 
 // Error handling middleware
