@@ -1,15 +1,16 @@
-import express, { Application, Request, Response } from "express";
-import cors from "cors";
+import cors from 'cors';
+import express, { Application, Request, Response } from 'express';
+import { StudentRoutes } from './app/modules/student/student.route';
 
 const app: Application = express();
 
+//parsers
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("hello");
+// application routes
+app.get('/', (req: Request, res: Response) => {
+  res.send('hello');
 });
-
-console.log("Express app instance created");
 
 export default app;
