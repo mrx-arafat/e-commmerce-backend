@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { ProductModel } from './product.model';
-import { productSchema } from './productValidator';
+import { ProductModel } from '../app/modules/product/product.model';
+import { productSchema } from '../app/modules/product/productValidator';
 
 const router = Router();
 

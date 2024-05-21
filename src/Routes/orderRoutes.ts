@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
-import { OrderModel } from './order.model';
-import { ProductModel } from './product.model';
+import { OrderModel } from '../app/modules/product/order.model';
+import { ProductModel } from '../app/modules/product/product.model';
 import Joi from 'joi';
 
 const router = Router();

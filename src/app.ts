@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express, { Application, Request, Response, NextFunction } from 'express';
-import productRoutes from './app/modules/product/productRoutes';
-import orderRoutes from './app/modules/product/orderRoutes';
+import productRoutes from './Routes/productRoutes';
+import orderRoutes from './Routes/orderRoutes';
 
 const app: Application = express();
 
