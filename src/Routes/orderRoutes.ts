@@ -47,21 +47,30 @@ router.post('/', async (req: Request, res: Response) => {
       data: order,
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
 
-// Retrieve all orders
+// Retrieve order by email
 router.get('/', async (req: Request, res: Response) => {
   try {
     const email = req.query.email as string;
-    const orders = await OrderModel.find({ email });
+    let orders;
+    if (email) {
+      console.log(`Filtering orders for email: ${email}`);
+      orders = await OrderModel.find({ email });
+    } else {
+      console.log('Retrieving all orders'); // Debug
+      orders = await OrderModel.find();
+    }
     res.status(200).json({
       success: true,
       message: 'Orders fetched successfully!',
       data: orders,
     });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ success: false, message: 'Internal Server Error' });
   }
 });
