@@ -1,4 +1,3 @@
-````markdown
 # E-Commerce Backend
 
 This is an E-Commerce backend application developed using Express and TypeScript, integrated with MongoDB using Mongoose for effective data management. The application ensures data integrity through validation using Joi.
@@ -26,7 +25,6 @@ Make sure you have the following installed on your system:
 git clone https://github.com/mrx-arafat/e-commerce-backend.git
 cd e-commerce-backend
 ```
-````
 
 ### 2. Install dependencies
 
@@ -65,7 +63,7 @@ npx ts-node src/feeder.ts
 npm run start
 ```
 
-This will start the server on the port specified in the `.env` file (default is 3000).
+This will start the server on the port specified in the `.env` file (default is 5000).
 
 ## API Endpoints
 
