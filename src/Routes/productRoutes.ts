@@ -4,6 +4,25 @@ import { productSchema } from '../app/modules/product/productValidator';
 
 const router = Router();
 
+//eikhane valoi jhamelai porchilam.. Debug Log
+
+// Search a product
+router.get('/search', async (req: Request, res: Response) => {
+  try {
+    const searchTerm = req.query.searchTerm as string;
+    const products = await ProductModel.find({
+      name: { $regex: searchTerm, $options: 'i' },
+    });
+    res.status(200).json({
+      success: true,
+      message: `Products matching search term '${searchTerm}' fetched successfully!`,
+      data: products,
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
 // Create new product
 router.post('/', async (req: Request, res: Response) => {
   try {
@@ -100,23 +119,6 @@ router.delete('/:productId', async (req: Request, res: Response) => {
       success: true,
       message: 'Product deleted successfully!',
       data: null,
-    });
-  } catch (err) {
-    res.status(500).json({ success: false, message: 'Internal Server Error' });
-  }
-});
-
-// Search a product
-router.get('/search', async (req: Request, res: Response) => {
-  try {
-    const searchTerm = req.query.searchTerm as string;
-    const products = await ProductModel.find({
-      name: { $regex: searchTerm, $options: 'i' },
-    });
-    res.status(200).json({
-      success: true,
-      message: `Products matching search term '${searchTerm}' fetched successfully!`,
-      data: products,
     });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Internal Server Error' });
