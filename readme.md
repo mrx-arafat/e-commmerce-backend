@@ -167,7 +167,7 @@ This will start the server on the port specified in the `.env` file (default is 
 
 #### Retrieve Orders by User Email
 
-- **Endpoint**: `/api/orders?email=customer@example.com`
+- **Endpoint**: `/api/orders?email=level2@programming-hero.com`
 - **Method**: GET
 - **Sample Response**:
 
