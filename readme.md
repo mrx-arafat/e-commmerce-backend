@@ -101,6 +101,8 @@ This will start the server on the port specified in the `.env` file (default is 
 
 - **Sample Response**:
 
+![1716372461729](image/readme/1716372461729.png)
+
 #### Retrieve All Products
 
 - **Endpoint**: `/api/products`
