@@ -101,34 +101,6 @@ This will start the server on the port specified in the `.env` file (default is 
 
 - **Sample Response**:
 
-```json
-{
-  "success": true,
-  "message": "Product created successfully!",
-  "data": {
-    "name": "iPhone 13",
-    "description": "A sleek and powerful smartphone with cutting-edge features.",
-    "price": 999,
-    "category": "Electronics",
-    "tags": ["smartphone", "Apple", "iOS"],
-    "variants": [
-      {
-        "type": "Color",
-        "value": "Midnight Blue"
-      },
-      {
-        "type": "Storage Capacity",
-        "value": "256GB"
-      }
-    ],
-    "inventory": {
-      "quantity": 50,
-      "inStock": true
-    }
-  }
-}
-```
-
 #### Retrieve All Products
 
 - **Endpoint**: `/api/products`
