@@ -181,31 +181,9 @@ This will start the server on the port specified in the `.env` file (default is 
 - **Method**: POST
 - **Request Body**:
 
-```json
-{
-  "email": "customerTest@example.com",
-  "productId": "664ca42bf0658ebbeba51b32",
-  "price": 999,
-  "quantity": 2
-}
-```
+![1716371991645](image/readme/1716371991645.png)
 
 - **Sample Response**:
-
-```json
-{
-  "success": true,
-  "message": "Order created successfully!",
-  "data": {
-    "email": "customerTest@example.com",
-    "productId": "664ca42bf0658ebbeba51b32",
-    "price": 999,
-    "quantity": 2,
-    "_id": "664daec565925886d0a9b877",
-    "__v": 0
-  }
-}
-```
 
 #### Retrieve All Orders
 
